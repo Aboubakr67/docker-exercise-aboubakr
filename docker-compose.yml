@@ -1,0 +1,16 @@
+version: "3.8"
+
+services:
+  app:
+    build:
+      context: ./app
+    # Attribue un nom explicite au conteneur pour une gestion simplifiée
+    container_name: docker-exercice-aboubakr-container
+    ports:
+      - "3000:3000" # Mappe le port 3000 du conteneur au port 3000 de l'hôte
+
+    # Monte un volume pour synchroniser les fichiers entre l'hôte et le conteneur
+    # Cela permet de modifier le code localement et de voir les changements sans reconstruire l'image
+    volumes:
+      - ./app:/usr/src/app # Synchronise les fichiers locaux avec le conteneur
+    restart: always # Redémarre automatiquement le conteneur en cas d'erreur
